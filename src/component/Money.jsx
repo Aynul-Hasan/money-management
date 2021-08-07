@@ -1,7 +1,7 @@
 import React ,{useState } from 'react'
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import { FaTrashAlt} from 'react-icons/fa';
-import {  BiReset} from "react-icons/bi";
+
  
 
 
@@ -14,7 +14,6 @@ export const Money = () => {
     const [totalAmount, setTotalAmount] = useState(0)
     const [income, setIncome] = useState(0)
     const [expace, setExpace] = useState(0)
-    const [resetBtn, setresetBtn] = useState(true)
     // console.log(totalAmount)
     // console.log(amount)
     // console.log(allData);
@@ -49,9 +48,8 @@ export const Money = () => {
                 setExpace(ng)
                 all=ps+ng
                 setTotalAmount(all)
-               
-
             }
+        
            
         })
         
@@ -60,14 +58,7 @@ export const Money = () => {
 
     }
 
-    const clearAllData=()=>{
-        setAllData([])
-        setTotalAmount(0)
-        setExpace(0)
-        setIncome(0)
-        setresetBtn(true)
-
-    }
+  
   
     const managementControl=(event)=>{
         event.preventDefault();
@@ -78,7 +69,7 @@ export const Money = () => {
             const newData={id: new Date().getTime().toString(), text,amount};
 
              setAllData([...allData,newData]);
-            setresetBtn(false)
+            
              
             if(amount>0){
                 setIncome(income+amount)
@@ -123,7 +114,7 @@ export const Money = () => {
             <div className=" ">
                 <h4 className=" text-center py-3 bg-warning w-100 his">
                     History
-                    <span className={allData.length==[] ? 'd-none':'translate-middle badge rounded-pill bg-white text-dark ms-2 py-1 px-2'} >{allData.length}</span>
+                    <span className={allData.length===[] ? 'd-none':'translate-middle badge rounded-pill bg-white text-dark ms-2 py-1 px-2'} >{allData.length}</span>
 
                 </h4>
                 <div className=" py-4 px-3 bg   height  position-relative" >
