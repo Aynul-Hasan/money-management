@@ -35,6 +35,7 @@ export const Money = () => {
                setIncome(0)
                setExpace(0)
                setTotalAmount(0)
+            
            }
            else if(cr.amount>0){
               
@@ -49,7 +50,7 @@ export const Money = () => {
                 all=ps+ng
                 setTotalAmount(all)
             }
-        
+        return 0;
            
         })
         
