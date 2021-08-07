@@ -22,16 +22,44 @@ export const Money = () => {
     // console.log(expace);
     
     const deleteItem=(i)=>{
-        const del=allData.filter((crrEl)=>{return crrEl.id !==i})
+        const del=allData.filter((crrEl)=>{return crrEl.id !==i;});
         setAllData(del);
-        if(allData===[{}]){
-            setTotalAmount(0)
-            setExpace(0)
-            setIncome(0)
+        let ps=0;
+        let ng=0;
+        let all=0;
+          setIncome(0)
+        setTotalAmount(0)
+        setExpace(0)
 
-        }
+        del.map((cr)=>{ 
+           if(cr==={}){
+               setIncome(0)
+               setExpace(0)
+               setTotalAmount(0)
+           }
+           else if(cr.amount>0){
+              
+                ps=ps+cr.amount
+                setIncome(ps)
+                all=ps+ng
+                setTotalAmount(all)
+
+            }else{
+                ng=ng+cr.amount
+                setExpace(ng)
+                all=ps+ng
+                setTotalAmount(all)
+               
+
+            }
+           
+        })
+        
+        
+    
 
     }
+
     const clearAllData=()=>{
         setAllData([])
         setTotalAmount(0)
@@ -76,7 +104,7 @@ export const Money = () => {
         <>
              <div className=" container-fluid pt-4 bg-dark">
              <div className="row d-flex justify-content-center ">
-            <div className="col-lg-6 col-8">
+            <div className="col-lg-5 col-sm-10">
             <h1 className="text-center text-white">Money Management</h1>
             <h4 className="bg-success text-center d-block w-100">Current Balance</h4>
             <div className="bg-white text-center py-2" >
@@ -93,17 +121,15 @@ export const Money = () => {
                 </div>
             </div>
             <div className=" ">
-                <h4 className=" text-center py-2 bg-warning w-100 his">
+                <h4 className=" text-center py-3 bg-warning w-100 his">
                     History
+                    <span className={allData.length==[] ? 'd-none':'translate-middle badge rounded-pill bg-white text-dark ms-2 py-1 px-2'} >{allData.length}</span>
+
                 </h4>
-                <div className=" py-4 px-3 bg  overflow-auto height  position-relative" >
-                <button type="button" onClick={clearAllData}
-                 className={resetBtn===false?"btn btn-danger position-absolute  start-0 mt-0":"btn btn-danger  d-none"}><BiReset></BiReset>
-                    <span class="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-secondary">{allData.length}</span>
-                </button>
+                <div className=" py-4 px-3 bg   height  position-relative" >
+               
                
               
-                {/* <button onClick={clearAllData} className={resetBtn===false?"btn btn-danger position-absolute top-0 start-0":"btn btn-danger  d-none"}><BiReset></BiReset> </button> */}
 
                     <ul className=" ">
 

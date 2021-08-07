@@ -4,8 +4,11 @@
 
 .height{
   height: 150px;
+  overflow-y: auto;
 }
-
+.height::-webkit-scrollbar{
+  display: none;
+}
 .bg{
   background-color: #282c34;
 }
